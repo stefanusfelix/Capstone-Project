@@ -6,8 +6,8 @@ This project provides a simulation experience of a cashier machine in a coffee s
 
 Here are some features available in this program:
 
-Displaying data
-Adding data
-Updating data
-Deleting data
-Sales transactions
+1. Displaying data,
+2. Adding data,
+3. Updating data,
+4. Deleting data,
+5. Sales transactions
