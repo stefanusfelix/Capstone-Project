@@ -197,31 +197,52 @@ while should_continue:
                 print("\nValue Error. Please try again!")
 
 
-        elif answer == 2:
+    elif answer == 2:
             
-            should_continue_2 = True
-            while should_continue_2:
+        should_continue_2 = True
+        while should_continue_2:
 
-                menu()
-                option_2()
+            menu()
+            option_2()
 
-                try:  
-                    answer_2 = user_input_2() 
+            try:  
+                answer_2 = user_input_2() 
 
-                    try:
-                        if answer_2 == 1:
-                        
-                            choice_2_continue = True
-                            while choice_2_continue:
+                try:
+                    if answer_2 == 1:
+                    
+                        choice_2_continue = True
+                        while choice_2_continue:
 
-                                input_code = True
-                                while input_code:
-                                    code = int(input("Input Product's Code\t\t: "))
+                            input_code = True
+                            while input_code:
+                                code = int(input("Input Product's Code\t\t: "))
+                                should_input_2 = 0
+                                for i in dict_menu:
+                                    if i == code:
+                                        print("\nThe code already exists. Please input another code!")
+                                        should_input_2 += 1
+                                    else:
+                                        pass
+
+                                if should_input_2 == 0:
+                                    break
+                                elif should_input_2 != 0:
+                                    continue
+
+                            checking_alpha = True
+                            while checking_alpha:
+                                product = input("\nInput Product's Name\t\t: ").title()
+                            
+                                input_product = True
+                                while input_product:
                                     should_input_2 = 0
                                     for i in dict_menu:
-                                        if i == code:
-                                            print("\nThe code already exists. Please input another code!")
+                                        if dict_menu[i]["Product"] == product:
+                                            print("\nThe product name already exists. Please input another name!")
                                             should_input_2 += 1
+                                            product = input("Input Product's Name\t\t: ").title()
+                                            continue
                                         else:
                                             pass
 
@@ -229,121 +250,100 @@ while should_continue:
                                         break
                                     elif should_input_2 != 0:
                                         continue
-
-                                checking_alpha = True
-                                while checking_alpha:
-                                    product = input("\nInput Product's Name\t\t: ").title()
                                 
-                                    input_product = True
-                                    while input_product:
-                                        should_input_2 = 0
-                                        for i in dict_menu:
-                                            if dict_menu[i]["Product"] == product:
-                                                print("\nThe product name already exists. Please input another name!")
-                                                should_input_2 += 1
-                                                product = input("Input Product's Name\t\t: ").title()
-                                                continue
-                                            else:
-                                                pass
-
-                                        if should_input_2 == 0:
-                                            break
-                                        elif should_input_2 != 0:
-                                            continue
-                                    
-                                    product_alpha = (product.replace(" ","i",3))
-                                    if product_alpha.isalpha():
-                                        break
-                                    else:
-                                        print("\nYou entered invalid input. Please try again!")
-                                        continue
-                                
-                                cogs = int(input("\nInput Cost of Goods Sold\t: "))
-                                price = int(input("\nInput Product Price\t\t: "))
-                                ingredients_coffee = int(input("\nInput how much coffee is needed\t: "))
-                                ingredients_water = int(input("\nInput how much water is needed\t: "))
-
-                                saving = True
-                                while saving:
-                                    save_data = input("\nDo you want to save the data? yes or no? ").lower()
-                                    if save_data == "yes":
-                                        dict_menu[code] = {"Product" : product.title(), "Stock" : "Available", "Cogs" : cogs, "Price" : price, "Ingredients" : {"coffee" : ingredients_coffee, "water" : ingredients_water}}
-                                        print("\nData successfully saved!")
-                                        stock_availability(dict_menu)
-                                        menu()
-                                        break
-                                    elif save_data == "no":
-                                        break
-                                    else:
-                                        print("\nYou entered invalid input. Please try again!")
-                                        continue
-                                
-                                want_continue = input("\nDo you want to continue adding a new Product? yes or no? ").lower()
-                                if want_continue == "yes":
-                                    continue
-                                elif want_continue == "no":
+                                product_alpha = (product.replace(" ","i",3))
+                                if product_alpha.isalpha():
                                     break
-                        
-                        elif answer_2 == 2: 
-
-                            want_add_more = True
-                            while want_add_more:
-
-                                add_stock = input("\nWhat ingredients do you want to add? coffee or water? ").lower()
-
-                                if add_stock == "coffee":
-                                    amount_coffee = int(input("Input amount of coffee\t: "))
-                                    save_data = input("\nDo you want to save the data? yes or no? ").lower()
-                                    if save_data == "yes":
-                                        stock_ingredients["coffee"] += amount_coffee
-                                        print("\nData successfully saved!")
-                                        ingredients()
-                                        want_add_more  = False
-                                    elif save_data == "no":
-                                        want_add_more = True
-                                    else: 
-                                        print("\nYou entered invalid input. Please try again!")
-                                        break
-
-                                    add_more = input("\nDo you want to add more ingredients? yes or no? ").lower()
-                                    if add_more == "yes":
-                                        want_add_more  = True
-                                    elif add_more == "no": 
-                                        want_add_more  = False
-                                    else: 
-                                        print("\nYou entered invalid input. Please try again!")
-                                        break
-
-                                elif add_stock == "water":
-                                    amount_water = int(input("Input amount of water\t: "))
-                                    save_data = input("\nDo you want to save the data? yes or no? ").lower()
-                                    if save_data == "yes":
-                                        stock_ingredients["water"] += amount_water
-                                        print("\nData successfully saved!")
-                                        ingredients()
-                                        want_add_more  = False
-                                    elif save_data == "no":
-                                        want_add_more = True
-                                    else:
-                                        print("\nYou entered invalid input. Please try again!")
-                                        break
+                                else:
+                                    print("\nYou entered invalid input. Please try again!")
+                                    continue
                             
-                                    add_more = input("\nDo you want to add more ingredients? yes or no? " ).lower()
-                                    if add_more == "yes":
-                                        want_add_more  = True
-                                    elif add_more == "no": 
-                                        want_add_more  = False
-                                    else: 
-                                        print("\nYou entered invalid input. Please try again!")
-                                        break
+                            cogs = int(input("\nInput Cost of Goods Sold\t: "))
+                            price = int(input("\nInput Product Price\t\t: "))
+                            ingredients_coffee = int(input("\nInput how much coffee is needed\t: "))
+                            ingredients_water = int(input("\nInput how much water is needed\t: "))
 
+                            saving = True
+                            while saving:
+                                save_data = input("\nDo you want to save the data? yes or no? ").lower()
+                                if save_data == "yes":
+                                    dict_menu[code] = {"Product" : product.title(), "Stock" : "Available", "Cogs" : cogs, "Price" : price, "Ingredients" : {"coffee" : ingredients_coffee, "water" : ingredients_water}}
+                                    print("\nData successfully saved!")
+                                    stock_availability(dict_menu)
+                                    menu()
+                                    break
+                                elif save_data == "no":
+                                    break
+                                else:
+                                    print("\nYou entered invalid input. Please try again!")
+                                    continue
+                            
+                            want_continue = input("\nDo you want to continue adding a new Product? yes or no? ").lower()
+                            if want_continue == "yes":
+                                continue
+                            elif want_continue == "no":
+                                break
+                    
+                    elif answer_2 == 2: 
+
+                        want_add_more = True
+                        while want_add_more:
+
+                            add_stock = input("\nWhat ingredients do you want to add? coffee or water? ").lower()
+
+                            if add_stock == "coffee":
+                                amount_coffee = int(input("Input amount of coffee\t: "))
+                                save_data = input("\nDo you want to save the data? yes or no? ").lower()
+                                if save_data == "yes":
+                                    stock_ingredients["coffee"] += amount_coffee
+                                    print("\nData successfully saved!")
+                                    ingredients()
+                                    want_add_more  = False
+                                elif save_data == "no":
+                                    want_add_more = True
+                                else: 
+                                    print("\nYou entered invalid input. Please try again!")
+                                    break
+
+                                add_more = input("\nDo you want to add more ingredients? yes or no? ").lower()
+                                if add_more == "yes":
+                                    want_add_more  = True
+                                elif add_more == "no": 
+                                    want_add_more  = False
+                                else: 
+                                    print("\nYou entered invalid input. Please try again!")
+                                    break
+
+                            elif add_stock == "water":
+                                amount_water = int(input("Input amount of water\t: "))
+                                save_data = input("\nDo you want to save the data? yes or no? ").lower()
+                                if save_data == "yes":
+                                    stock_ingredients["water"] += amount_water
+                                    print("\nData successfully saved!")
+                                    ingredients()
+                                    want_add_more  = False
+                                elif save_data == "no":
+                                    want_add_more = True
                                 else:
                                     print("\nYou entered invalid input. Please try again!")
                                     break
-                                
-                            stock_availability(dict_menu)
+                        
+                                add_more = input("\nDo you want to add more ingredients? yes or no? " ).lower()
+                                if add_more == "yes":
+                                    want_add_more  = True
+                                elif add_more == "no": 
+                                    want_add_more  = False
+                                else: 
+                                    print("\nYou entered invalid input. Please try again!")
+                                    break
 
-                            ingredients()
+                            else:
+                                print("\nYou entered invalid input. Please try again!")
+                                break
+                            
+                        stock_availability(dict_menu)
+
+                        ingredients()
 
                         elif answer_2 == 3:
                             break
@@ -359,17 +359,8 @@ while should_continue:
 
                         elif answer_2 == 3:
                             break
-                        
-                        else: 
-                            print("\nYou entered invalid input. Please try again!")
-                        
-                    except:
-                        print("\nValue Error. Please try again!")
 
-                except:
-                    print("\nValue Error. Please try again!")
-
-
+    
     elif answer == 3:
             
             should_continue_3 = True
@@ -684,7 +675,7 @@ while should_continue:
                     print("\nValue Error. Please try again!")  
 
 
-        elif answer == 5: 
+    elif answer == 5: 
         should_continue_5 = True
         while should_continue_5:
             
