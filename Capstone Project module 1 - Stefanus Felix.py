@@ -74,7 +74,7 @@ def main_menu():
     print("\nWelcome to LixSooyaaa Coffee Shop")
     print("""
         List:
-        1. Dislay Data
+        1. Display Data
         2. Add Data  
         3. Update Data
         4. Delete Data
@@ -197,7 +197,7 @@ while should_continue:
                 print("\nValue Error. Please try again!")
 
 
-    elif answer == 2:
+        elif answer == 2:
             
             should_continue_2 = True
             while should_continue_2:
@@ -233,28 +233,29 @@ while should_continue:
                                 checking_alpha = True
                                 while checking_alpha:
                                     product = input("\nInput Product's Name\t\t: ").title()
+                                
+                                    input_product = True
+                                    while input_product:
+                                        should_input_2 = 0
+                                        for i in dict_menu:
+                                            if dict_menu[i]["Product"] == product:
+                                                print("\nThe product name already exists. Please input another name!")
+                                                should_input_2 += 1
+                                                product = input("Input Product's Name\t\t: ").title()
+                                                continue
+                                            else:
+                                                pass
+
+                                        if should_input_2 == 0:
+                                            break
+                                        elif should_input_2 != 0:
+                                            continue
+                                    
                                     product_alpha = (product.replace(" ","i",3))
                                     if product_alpha.isalpha():
                                         break
                                     else:
                                         print("\nYou entered invalid input. Please try again!")
-                                        continue
-                                
-                                input_product = True
-                                while input_product:
-                                    should_input_2 = 0
-                                    for i in dict_menu:
-                                        if dict_menu[i]["Product"] == product:
-                                            print("The product name already exists. Please input another name!")
-                                            should_input_2 += 1
-                                            product = input("Input Product's Name\t\t: ").title()
-                                            continue
-                                        else:
-                                            pass
-
-                                    if should_input_2 == 0:
-                                        break
-                                    elif should_input_2 != 0:
                                         continue
                                 
                                 cogs = int(input("\nInput Cost of Goods Sold\t: "))
@@ -343,6 +344,18 @@ while should_continue:
                             stock_availability(dict_menu)
 
                             ingredients()
+
+                        elif answer_2 == 3:
+                            break
+                        
+                        else: 
+                            print("\nYou entered invalid input. Please try again!")
+                        
+                    except:
+                        print("\nValue Error. Please try again!")
+
+                except:
+                    print("\nValue Error. Please try again!")
 
                         elif answer_2 == 3:
                             break
@@ -671,7 +684,7 @@ while should_continue:
                     print("\nValue Error. Please try again!")  
 
 
-    elif answer == 5: 
+        elif answer == 5: 
         should_continue_5 = True
         while should_continue_5:
             
@@ -748,60 +761,68 @@ while should_continue:
                             continue_shopping = input("\nDo you want to continue shopping? yes or no? ").lower()
 
                             if continue_shopping == "yes":
-                                adding_cart = False
                                 break
                             
                             elif continue_shopping == "no":
-                                payment = True
+                                pass
                             
                             else:
                                 print("\nYou entered invalid input. Please try again!")
 
+
                             payment = True 
                             while payment:
 
-                                print(f'\n{"Shopping Cart":^62}')
-                                print(f'{"Product":^20} | {"Quantity":^15} | {"Total Price":^14}')
-                                for i in dict_cart:
-                                    price_cart = (f'{dict_cart[i]["Price"]:,}')
-                                    print(f'{dict_cart[i]["Product"]:^20} | {dict_cart[i]["Quantity"]:^15} | {price_cart:^15}')
+                                if dict_cart == {}:
+                                    print("\nThank You!")
+                                    shopping = False
+                                    choice_5_continue = False
+                                    should_continue_5 = False
+                                    break
+                        
+                                else:
+                                    print(f'\n{"Shopping Cart":^62}')
+                                    print(f'{"Product":^20} | {"Quantity":^15} | {"Total Price":^14}')
+                                    for i in dict_cart:
+                                        price_cart = (f'{dict_cart[i]["Price"]:,}')
+                                        print(f'{dict_cart[i]["Product"]:^20} | {dict_cart[i]["Quantity"]:^15} | {price_cart:^15}')
 
-                                total_payment = 0
-                                total_cogs = 0
+                                    total_payment = 0
+                                    total_cogs = 0
 
-                                for i in dict_cart:
-                                    total_payment += dict_cart[i]["Price"]
-                                    total_cogs += dict_cart[i]["Cogs"]
+                                    for i in dict_cart:
+                                        total_payment += dict_cart[i]["Price"]
+                                        total_cogs += dict_cart[i]["Cogs"]
 
-                                should_pay = True
-                                while should_pay:
-                                    
-                                    print(f"\nThe total payment is {total_payment:,}") 
-                                    user_money = int(input("Please input your money = "))
+                                    should_pay = True
+                                    while should_pay:
+                                        
+                                        print(f"\nThe total payment is {total_payment:,}") 
+                                        user_money = int(input("Please input your money = "))
 
-                                    if user_money < total_payment:
-                                        print("\nSorry, the amount of money you input is not enough!")
+                                        if user_money < total_payment:
+                                            print("\nSorry, the amount of money you input is not enough!")
 
-                                    elif user_money == total_payment:
-                                        print("\nThank you!")
-                                        dict_cart = {}
-                                        break
-                                    
-                                    elif user_money > total_payment:
-                                        print("\nThank you!")
-                                        print(f"Here's your change = {user_money - total_payment}")
-                                        dict_cart = {}
-                                        break
-                                    
-                                    
-                                print(f"\nTotal profit = {total_payment - total_cogs}")
+                                        elif user_money == total_payment:
+                                            print("\nThank you!")
+                                            dict_cart = {}
+                                            break
+                                        
+                                        elif user_money > total_payment:
+                                            print("\nThank you!")
+                                            print(f"Here's your change = {user_money - total_payment}")
+                                            dict_cart = {}
+                                            break
+                                        
+                                        
+                                    print(f"\nTotal profit = {total_payment - total_cogs}")
 
-                                payment = False
-                                shopping = False
-                                adding_cart = False
-                                code_wrong = False
-                                choice_5_continue = False
-                                should_continue_5 = False
+                                    payment = False
+                                    shopping = False
+                                    adding_cart = False
+                                    code_wrong = False
+                                    choice_5_continue = False
+                                    should_continue_5 = False
                             
                     elif answer_5 == 2:
                         should_continue_5 = False
@@ -812,7 +833,6 @@ while should_continue:
                         break
             except:
                 print("\nValue Error. Please try again!") 
-
 
     elif answer == 6:
         want_exit = input("\nDo you want to leave the program? yes or no? ").lower()
