@@ -198,7 +198,7 @@ while should_continue:
 
 
     elif answer == 2:
-            
+        
         should_continue_2 = True
         while should_continue_2:
 
@@ -345,22 +345,18 @@ while should_continue:
 
                         ingredients()
 
-                        elif answer_2 == 3:
-                            break
-                        
-                        else: 
-                            print("\nYou entered invalid input. Please try again!")
-                        
-                    except:
-                        print("\nValue Error. Please try again!")
-
+                    elif answer_2 == 3:
+                        break
+                    
+                    else: 
+                        print("\nYou entered invalid input. Please try again!")
+                    
                 except:
                     print("\nValue Error. Please try again!")
 
-                        elif answer_2 == 3:
-                            break
+            except:
+                print("\nValue Error. Please try again!")
 
-    
     elif answer == 3:
             
             should_continue_3 = True
@@ -841,8 +837,3 @@ while should_continue:
 
     else:
         print("\nThe program menu you are looking for does not exist. Please try again!")
-
-
-
-
-
