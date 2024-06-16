@@ -1,13 +1,11 @@
-Hello everyone, I'm Stefanus Felix.
+Hello everyone, I'm Stefanus Felix, thrilled to present my first Python capstone project!
 
-I want to share my first capstone project using Python.
+This project simulates a cashier machine for a coffee shop, featuring essential functionalities:
 
-This project provides a simulation experience of a cashier machine in a coffee shop.
-
-Here are some features available in this program:
-
-1. Displaying data,
-2. Adding data,
-3. Updating data,
-4. Deleting data,
-5. Sales transactions
+- Displaying Data: Easily view essential information.
+- Adding Data: Seamlessly add new items or details.
+- Updating Data: Modify existing information as needed.
+- Deleting Data: Remove outdated or unnecessary entries.
+- Sales Transactions: Perform calculations for seamless transaction management.
+  
+Join me as I showcase the capabilities of my coffee shop cashier simulation. Let's enhance operational efficiency together! 🌟 #Python #CapstoneProject #CoffeeShop #CashierSimulation
